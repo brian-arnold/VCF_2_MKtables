@@ -40,12 +40,6 @@ def getBedIntervalsDict(bedList):
 
 			#print(chrom, start, end)
 		bedFH.close()
-
-	#for bed in bedIntervalsDict:
-	#	for chro in bedIntervalsDict[bed]:
-	#		print(bed, chro, bedIntervalsDict[bed][chro])
-
-
 	return(bedIntervalsDict)
 
 def getCallableSites(chrList, bedList, bedIntDict):
@@ -95,11 +89,11 @@ def main():
 	bedIntervalsDict = getBedIntervalsDict(bedList) # 2D Dict of sets, bedIntervalsDict[bedFN][chrom] = set(range(start, end+1))
 
 	# for each chrom, find intersection of all intervals across all input bed files
-	# load into CallableSitesDict
-	CallableSitesDict = getCallableSites(ChromList, bedList, bedIntervalsDict) # 2D Dict of callable sites, overlapped from all input bed files
+	# load into 2D dict CallableSitesDict, CallableSitesDict[chrom][pos]=1
+	CallableSitesDict = getCallableSites(ChromList, bedList, bedIntervalsDict) 
 
-	RefDict = {}	# 2D dict
-	AltDict = {}	# 3D dict
+	RefDict = {}	# 2D dict, RefDict[chromosome][site] = reference allele
+	AltDict = {}	# 3D dict, AltDict[vcfFile][chromosome][site] = (alternate allele, frequency)
 	MultiDict = {} 	# Dict recording multiallelic sites and indels
 	# Initialize Dicts
 	for chrom in CallableSitesDict:
@@ -108,8 +102,6 @@ def main():
 		for vcfFN in vcfList:
 			AltDict[vcfFN] = {}
 			AltDict[vcfFN][chrom] = {}
-			#for site in sorted(CallableSitesDict[chrom].keys()):
-			#	RefDict[vcf][chrom][site] = {}
 
 	# Go through each VCF file
 	for vcfFN in vcfList:	
