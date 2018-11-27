@@ -99,8 +99,9 @@ def main():
 	for chrom in CallableSitesDict:
 		MultiDict[chrom] = {}
 		RefDict[chrom] = {}
-		for vcfFN in vcfList:
-			AltDict[vcfFN] = {}
+	for vcfFN in vcfList:
+		AltDict[vcfFN] = {}
+		for chrom in CallableSitesDict:
 			AltDict[vcfFN][chrom] = {}
 
 	# Go through each VCF file
