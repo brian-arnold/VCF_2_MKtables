@@ -1,7 +1,7 @@
 #!/usr/bin/python -tt
 
 """ 
-INSERT USEFUL COMMENTS HERE
+WARNING: loading all sites in BED file into memory takes a LOT of memory...
 """
 
 import sys
