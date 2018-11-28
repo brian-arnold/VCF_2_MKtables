@@ -1,0 +1,2 @@
+Chromosome Position RefAllele ./vcfs/test2.txt_Allele ./vcfs/test2.txt_Freq 
+NW_018113945.1 381 T T 1.0
